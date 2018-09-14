@@ -7,14 +7,14 @@ const SearchResult = ({ results, fetched }) =>
         <h2>{name}</h2>
         {image ? (
           <li>
-            <img src={image.medium} />
+            <img src={image.medium} alt="" />
           </li>
         ) : null}
         <li>Premiered: {premiered}</li>
       </ul>
     ))
   ) : (
-    <p>no result</p>
+    <p>No result</p>
   );
 
 export default SearchResult;

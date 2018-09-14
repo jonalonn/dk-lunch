@@ -2,15 +2,16 @@ import React, { Component } from "react";
 import "./App.css";
 import Input from "./components/Input";
 import Button from "./components/Button";
+import People from "./components/People";
 import SearchResult from "./components/SearchResult/SearchResult";
 
 class App extends Component {
   state = {
     title: "DK Lunch",
-    heading: "Deltagare",
+    h2: "Deltagare",
     h3: "Search TV-Shows",
     buttons: { title: "Change title", person: "Add person", search: "Search" },
-    inputs: { title: "abc", person: "Jonathan", search: "" },
+    inputs: { title: "", person: "", search: "" },
     people: [],
     results: [],
     fetched: false
@@ -46,6 +47,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        {/* Change title */}
         <h1>{this.state.title}</h1>
         <Input
           onChange={this.handleInput}
@@ -53,17 +55,19 @@ class App extends Component {
           name="title"
         />
         <Button onClick={this.changeTitle} text={this.state.buttons.title} />
-        <h2>{this.state.heading}</h2>
+
+        {/* List of people */}
+        <h2>{this.state.h2}</h2>
         <Input
           onChange={this.handleInput}
           value={this.state.inputs.person}
           name="person"
         />
         <Button onClick={this.addPerson} text={this.state.buttons.person} />
-        {this.state.people.map((person, iteration) => (
-          <p key={iteration}>{person}</p>
-        ))}
-        <h1>{this.state.h3}</h1>
+        <People people={this.state.people} />
+
+        {/* Search tv shows */}
+        <h3>{this.state.h3}</h3>
         <Input
           onChange={this.handleInput}
           value={this.state.inputs.search}

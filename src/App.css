@@ -1,4 +1,8 @@
 .App {
-  max-width: 800px;
-  margin: 40px auto;
+  margin-left: 20px; 
+}
+
+ul {
+  list-style: none;
+  padding: 10px 0;
 }
