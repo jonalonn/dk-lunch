@@ -18,29 +18,25 @@ class App extends Component {
   };
 
   handleInput = ({ target: { value, name } }) =>
-    this.setState(prevState => ({
+    this.setState(({ inputs }) => ({
       inputs: {
-        ...prevState.inputs,
+        ...inputs,
         [name]: value
       }
     }));
 
-  changeTitle = () =>
-    this.setState(prevState => ({ title: prevState.inputs.title }));
+  changeTitle = () => this.setState(({ inputs: { title } }) => ({ title }));
 
   addPerson = () =>
-    this.setState(prevState => ({
-      people: [...prevState.people, prevState.inputs.person]
+    this.setState(({ people, inputs: { person } }) => ({
+      people: [...people, person]
     }));
 
   fetchData = () =>
-    fetch(
-      `http://api.tvmaze.com/search/shows?q=${this.state.inputs.search}`
-    ).then(response =>
-      response
-        .json()
+    fetch(`http://api.tvmaze.com/search/shows?q=${this.state.inputs.search}`)
+      .then(response => response.json()
         .then(data => this.setState({ results: data, fetched: true }))
-    );
+      );
 
   render() {
     console.log(this.state);
